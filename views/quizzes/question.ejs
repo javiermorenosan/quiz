@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<meta charset= 'utf-8'>
-    <title>Quiz</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <form method="get" action="/check">
-    	Pregunta: <%= question %><p>
-    	<input type="text" name="answer" value="<%= answer %>" placeholder="Responda aquí"/>
-    	<input type="submit" value="Comprobar"/>
+    <form method="get" action="/check">        
+      Pregunta: <%= question %> <p>
+      <input type="text" name="answer" value="<%= answer %>" placeholder="Responda aquí"/>
+      <input type="submit" value="Comprobar">
     </form>
-  </body>
-</html>
