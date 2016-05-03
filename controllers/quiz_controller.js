@@ -58,7 +58,6 @@ exports.search = function(req, res, next) {
 exports.create = function(req, res, next) {
 	var quiz = models.Quiz.build({ question: req.body.quiz.question,
 								   answer:   req.body.quiz.answer} );
-
 //guarda en DB los campos pregunta y respuesta de quiz
 	quiz.save({fields: ["question", "answer"]})
 		.then(function(quiz) {
