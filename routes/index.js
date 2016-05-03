@@ -21,3 +21,10 @@ router.post('/quizzes',                     quizController.create);
 
 
 module.exports = router;
+
+router.get('/author', function(req, res, next) {
+  res.render('author');
+});
+
+module.exports = router;
+
