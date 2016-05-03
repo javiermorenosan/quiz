@@ -50,7 +50,6 @@ exports.new = function(req, res, next) {
 exports.search = function(req, res, next) {
 	models.Quiz.findAll({where: ["question like ?", '%'+req.query.search.split(" ").join("%")+'%']})
 		.then(function(quizzes) {
-			quizzes=quizzes.sort();
 			res.render('quizzes/index.ejs', { quizzes: quizzes});
 		}).catch(function(error) { next(error); });
 };
