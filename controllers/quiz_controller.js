@@ -46,6 +46,15 @@ exports.new = function(req, res, next) {
 	res.render('quizzes/new', {quiz: quiz});
 };
 
+// GET /quizes?search=texto_a_buscar
+exports.search = function(req, res, next) {
+	models.Quiz.findAll({where: ["question like ?", '%'+req.query.search.split(" ").join("%")+'%']})
+		.then(function(quizzes) {
+			quizzes=quizzes.sort();
+			res.render('quizzes/index.ejs', { quizzes: quizzes});
+		}).catch(function(error) { next(error); });
+};
+
 //POST /quizzes/create
 exports.create = function(req, res, next) {
 	var quiz = models.Quiz.build({ question: req.body.quiz.question,
