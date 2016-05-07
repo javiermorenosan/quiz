@@ -18,7 +18,13 @@ exports.load = function(req, res, next, quizId) {
 exports.index = function(req, res, next) {
 	models.Quiz.findAll()
 		.then(function(quizzes) {
-			res.render('quizzes/index.ejs', { quizzes: quizzes});
+			var format = req.params.format;
+			if (format == "json"){
+				res.render('quizzes/indexjson.ejs', { quizzes: quizzes, layout: false});
+			}
+			else{
+				res.render('quizzes/index.ejs', { quizzes: quizzes});
+			};
 		}).catch(function(error) { next(error); });
 };
 
@@ -26,8 +32,15 @@ exports.index = function(req, res, next) {
 // GET /quizzes/:id
 exports.show = function(req, res, next) {
 	var answer = req.query.answer || '';
+	var format = req.params.format;
+	if (format == "json"){
+		res.render('quizzes/showjson.ejs', {quiz: req.quiz,
+											answer: answer, layout: false});
+	}
+	else{
 	res.render('quizzes/show', {quiz: req.quiz,
 								answer: answer});
+	};
 };
 
 
