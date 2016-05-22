@@ -12,15 +12,15 @@ router.get('/', function(req, res, next) {
 router.param('quizId', quizController.load); //autoload :quizId
 
 // Definición de rutas de /quizzes
+router.post('/quizzes',                     	quizController.index);
 router.get('/quizzes.:format?', 				quizController.index);
 router.get('/quizzes/:quizId(\\d+).:format?', 	quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check',  	quizController.check);
 router.get('/search', 							quizController.search);
 router.get('/quizzes/new',                  	quizController.new);
 router.post('/quizzes',                     	quizController.create);
-
-
-module.exports = router;
+router.get('/quizzes/:quizId(\\d+)/edit',  	    quizController.edit);
+router.put('/quizzes/:quizId(\\d+)',  	        quizController.update);
 
 router.get('/author', function(req, res, next) {
   res.render('author');
