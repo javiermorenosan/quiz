@@ -47,10 +47,12 @@ exports.create = function(req, res, next) {
     authenticate(login, password)
         .then(function(user) {
             if (user) {
+            	var date = new Date();
+            	date = date.setMinutes(date.getMinutes()+2);
     	        // Crear req.session.user y guardar campos id y username
     	        // La sesión se define por la existencia de: req.session.user
-    	        req.session.user = {id:user.id, username:user.username};
-
+    	        req.session.user = {id:user.id, username:user.username, loginTimeout: date};
+    	        req.session.user.loginTimeout = date;
                 res.redirect(redir); // redirección a redir
             } else {
                 req.flash('error', 'La autenticación ha fallado. Reinténtelo otra vez.');

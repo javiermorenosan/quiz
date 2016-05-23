@@ -21,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
         salt: {
             type: DataTypes.STRING
         },
+        loginTimeout: {
+            type: DataTypes.DATE,
+            defaultValue: false
+        },
         isAdmin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

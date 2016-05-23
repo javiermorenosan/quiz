@@ -36,6 +36,20 @@ app.use(function(req, res, next) {
 
   next();
 });
+app.use(function(req, res, next){
+  if (req.session.user){
+    var actualTime = new Date();
+    if (actualTime >= req.session.user.loginTimeOut){
+      delete req.session.user;
+     req.flash('error', 'Su sesión ha expirado. Inicie sesión de nuevo.');
+     res.redirect("/session"); // redirect a login
+    } 
+  else{
+    var actualTime = actualTime.setMinutes(actualTime.getMinutes()+2);
+    req.session.user.loginTimeOut = actualTime;
+    next();
+  };
+} else {next();};});
 
 app.use('/', routes);
 
