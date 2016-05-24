@@ -14,9 +14,16 @@ exports.new = function(req, res, next) {
 
 // POST /quizes/:quizId/comments
 exports.create = function(req, res, next) {
+
+  var authorName = "Anónimo";
+  if(req.session.user){
+    authorName = req.session.user.username;
+  };
+
   var comment = models.Comment.build(
       { text:   req.body.comment.text,          
-        QuizId: req.quiz.id
+        QuizId: req.quiz.id,
+        AuthorName: authorName
       });
 
   comment.save()

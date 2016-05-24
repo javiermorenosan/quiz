@@ -21,5 +21,6 @@
 <ul>
 <% for (var i in quiz.Comments) { %>
 	<li> <%=quiz.Comments[i].text %> </li>
+  <p> Comentado por: <%= quiz.Comments[i].AuthorName %> </p>
 <% } %>
 </ul>

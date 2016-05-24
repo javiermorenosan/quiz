@@ -42,6 +42,10 @@ Quiz.hasMany(Comment);
 User.hasMany(Quiz, {foreignKey: 'AuthorId'});
 Quiz.belongsTo(User, {as: 'Author', foreignKey: 'AuthorId'});
 
+//Relaciones 1 a N entre User y Comments
+User.hasMany(Comment, {foreignKey: 'AuthorName'});
+Comment.belongsTo(User, {as: 'Author', foreignKey: 'AuthorName'});
+
 ////sequelize.sync() crea e inicializa tabla de preguntas en DB
 //sequelize
 //.sync()
