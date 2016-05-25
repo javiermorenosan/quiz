@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-//Autoload de rutas que usen :quizId
+//Autoload de parametros
 router.param('quizId', quizController.load); //autoload :quizId
 router.param('userId', userController.load); //autoload :userId
 
@@ -30,8 +30,8 @@ router.put('/users/:userId(\\d+)',      userController.update);   // actualizar 
 router.delete('/users/:userId(\\d+)',   userController.destroy);  // borrar cuenta
 
 // Definición de rutas de /quizzes
-router.post('/quizzes',                     	quizController.index);
 router.get('/quizzes.:format?', 				quizController.index);
+router.get('/quizzes',                       	quizController.index);
 router.get('/quizzes/:quizId(\\d+).:format?', 	quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check',  	quizController.check);
 router.get('/search', 							quizController.search);

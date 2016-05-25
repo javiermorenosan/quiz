@@ -69,7 +69,10 @@ exports.search = function(req, res, next) {
 
 // POST /quizzes/create
 exports.create = function(req, res, next) {
-
+	/*var authorId = 0;
+	if (re.session.user){
+		authorId = req.session.user.id;
+	};*/
   var authorId = req.session.user && req.session.user.id || 0;
 
   var quiz = models.Quiz.build({ question: req.body.quiz.question, 
